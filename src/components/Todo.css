@@ -1,12 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html,
 body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 .itemcompleted {
     text-decoration: line-through;
+}
+
+.app-container {
+    width: 55%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10%;
+    border: 2px solid black;
+    padding: 30px;
+}
+
+.todo-item{
+    border: 1px solid black;
+    padding: .5rem;
 }

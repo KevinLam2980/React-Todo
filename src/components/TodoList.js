@@ -8,7 +8,11 @@ const TodoList = props => {
     return (
         <div>
             {
-                props.todo.map(item => {
+                props.todo
+                .filter(item => {
+                    return item.name.includes(props.search)
+                })
+                .map(item => {
                     return <Todo key={item.id} item={item} toggleCompleted={props.toggleCompleted}/>
                 })
             }

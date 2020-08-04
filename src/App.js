@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoForm from './components/TodoForm'
 import TodoList from './components/TodoList'
+import Search from './components/search'
 import './components/Todo.css'
 
 class App extends React.Component {
@@ -10,8 +11,14 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      todo: []
+      todo: [],
+      search: '',
+      formValue: ''
     }
+  }
+
+  handleChanges = (evt) => {
+    this.setState({[evt.target.name]: evt.target.value})
   }
 
   addItem = (itemName) => {
@@ -40,6 +47,12 @@ class App extends React.Component {
     })
   }
 
+  submit = evt => {
+    evt.preventDefault()
+    this.addItem(this.state.formValue)
+    this.setState({formValue: ''})
+}
+
   clearCompleted = (evt) => {
     evt.preventDefault()
     this.setState({
@@ -48,14 +61,14 @@ class App extends React.Component {
       })
     })
   }
-
   
   render() {
     return (
-      <div>
+      <div className='app-container'>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addItem={this.addItem} clearCompleted={this.clearCompleted}/>
-        <TodoList todo={this.state.todo} toggleCompleted={this.toggleCompleted}/>
+        <TodoForm addItem={this.addItem} clearCompleted={this.clearCompleted}  handleChanges={this.handleChanges} formValue={this.state.formValue} submit={this.submit}/>
+        <Search search={this.state.search} handleChanges={this.handleChanges}/>
+        <TodoList todo={this.state.todo} toggleCompleted={this.toggleCompleted} search={this.state.search}/>
       </div>
     );
   }
